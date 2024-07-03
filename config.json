@@ -1,0 +1,22 @@
+{
+  "app": {
+    "service_name": "Music-App",
+    "port": 4021,
+    "allowed_domains": "*",
+    "path_log": "./log",
+    "log_review_interval": 60,
+    "register_log": true,
+    "logger_http": true,
+    "language": "en"
+  },
+  "db": {
+    "engine": "postgres",
+    "server": "127.0.0.1",
+    "port": 5432,
+    "name": "music-app",
+    "user": "macbookpro",
+    "password": "",
+    "instance": "",
+    "is_secure": false
+  }
+}
