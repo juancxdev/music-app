@@ -1,0 +1,1150 @@
+basePath: /
+definitions:
+  albums.RequestAlbums:
+    properties:
+      artist:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+      releaseDate:
+        type: string
+    type: object
+  albums.ResponseAlbums:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  artists.RequestArtists:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      nationality:
+        type: string
+      surname:
+        type: string
+    type: object
+  artists.ResponseArtists:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  play_lists.RequestPlaylists:
+    properties:
+      id:
+        type: string
+      name:
+        type: string
+      user:
+        type: integer
+    type: object
+  play_lists.ResponsePlaylists:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  songs.RequestSongs:
+    properties:
+      album:
+        type: string
+      artist:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  songs.ResponseSongs:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  songs_play_list.RequestSongsOfPlaylist:
+    properties:
+      id:
+        type: string
+      playlist:
+        type: integer
+      song:
+        type: integer
+    type: object
+  songs_play_list.ResponseSongsOfPlaylist:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  songs_played.RequestSongsPlayed:
+    properties:
+      date:
+        type: string
+      id:
+        type: string
+      song:
+        type: integer
+      user:
+        type: integer
+    type: object
+  songs_played.ResponseSongsPlayed:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+  users.RequestUsers:
+    properties:
+      creationDate:
+        type: string
+      email:
+        type: string
+      id:
+        type: string
+      name:
+        type: string
+    type: object
+  users.ResponseUsers:
+    properties:
+      code:
+        type: integer
+      data: {}
+      error:
+        type: boolean
+      msg:
+        type: string
+      type:
+        type: string
+    type: object
+host: 127.0.0.1:4021
+info:
+  contact:
+    email: juanm.campos@unas.edu.pe
+    name: API Support
+  description: System manage music
+  termsOfService: https://juancx.site/
+  title: Music API REST
+  version: "1.0"
+paths:
+  /api/v1/albums:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Albums en la
+        base de datos
+      parameters:
+      - description: Datos para crear Albums
+        in: body
+        name: RequestAlbums
+        required: true
+        schema:
+          $ref: '#/definitions/albums.RequestAlbums'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+      summary: Crear una instancia de Albums
+      tags:
+      - Albums
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto Albums en
+        la base de datos
+      parameters:
+      - description: Datos para actualizar Albums
+        in: body
+        name: RequestAlbums
+        required: true
+        schema:
+          $ref: '#/definitions/albums.RequestAlbums'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+      summary: Actualiza una instancia de Albums
+      tags:
+      - Albums
+  /api/v1/albums/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Albums
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+      summary: Obtiene todas las instancias de Albums
+      tags:
+      - Albums
+  /api/v1/albums/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Albums en
+        la base de datos
+      parameters:
+      - description: Albums ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+      summary: Elimina una instancia de Albums
+      tags:
+      - Albums
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Albums en la
+        base de datos por su id
+      parameters:
+      - description: Albums ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/albums.ResponseAlbums'
+      summary: Obtiene una instancia de Albums por su id
+      tags:
+      - Albums
+  /api/v1/artists:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Artists en la
+        base de datos
+      parameters:
+      - description: Datos para crear Artists
+        in: body
+        name: RequestArtists
+        required: true
+        schema:
+          $ref: '#/definitions/artists.RequestArtists'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+      summary: Crear una instancia de Artists
+      tags:
+      - Artists
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto Artists en
+        la base de datos
+      parameters:
+      - description: Datos para actualizar Artists
+        in: body
+        name: RequestArtists
+        required: true
+        schema:
+          $ref: '#/definitions/artists.RequestArtists'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+      summary: Actualiza una instancia de Artists
+      tags:
+      - Artists
+  /api/v1/artists/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Artists
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+      summary: Obtiene todas las instancias de Artists
+      tags:
+      - Artists
+  /api/v1/artists/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Artists en
+        la base de datos
+      parameters:
+      - description: Artists ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+      summary: Elimina una instancia de Artists
+      tags:
+      - Artists
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Artists en
+        la base de datos por su id
+      parameters:
+      - description: Artists ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/artists.ResponseArtists'
+      summary: Obtiene una instancia de Artists por su id
+      tags:
+      - Artists
+  /api/v1/playlists:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Playlists en
+        la base de datos
+      parameters:
+      - description: Datos para crear Playlists
+        in: body
+        name: RequestPlaylists
+        required: true
+        schema:
+          $ref: '#/definitions/play_lists.RequestPlaylists'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+      summary: Crear una instancia de Playlists
+      tags:
+      - Playlists
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto Playlists
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar Playlists
+        in: body
+        name: RequestPlaylists
+        required: true
+        schema:
+          $ref: '#/definitions/play_lists.RequestPlaylists'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+      summary: Actualiza una instancia de Playlists
+      tags:
+      - Playlists
+  /api/v1/playlists/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Playlists
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+      summary: Obtiene todas las instancias de Playlists
+      tags:
+      - Playlists
+  /api/v1/playlists/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Playlists
+        en la base de datos
+      parameters:
+      - description: Playlists ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+      summary: Elimina una instancia de Playlists
+      tags:
+      - Playlists
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Playlists en
+        la base de datos por su id
+      parameters:
+      - description: Playlists ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/play_lists.ResponsePlaylists'
+      summary: Obtiene una instancia de Playlists por su id
+      tags:
+      - Playlists
+  /api/v1/songs:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Songs en la base
+        de datos
+      parameters:
+      - description: Datos para crear Songs
+        in: body
+        name: RequestSongs
+        required: true
+        schema:
+          $ref: '#/definitions/songs.RequestSongs'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+      summary: Crear una instancia de Songs
+      tags:
+      - Songs
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto Songs en
+        la base de datos
+      parameters:
+      - description: Datos para actualizar Songs
+        in: body
+        name: RequestSongs
+        required: true
+        schema:
+          $ref: '#/definitions/songs.RequestSongs'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+      summary: Actualiza una instancia de Songs
+      tags:
+      - Songs
+  /api/v1/songs-play-list:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto SongsOfPlaylist
+        en la base de datos
+      parameters:
+      - description: Datos para crear SongsOfPlaylist
+        in: body
+        name: RequestSongsOfPlaylist
+        required: true
+        schema:
+          $ref: '#/definitions/songs_play_list.RequestSongsOfPlaylist'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+      summary: Crear una instancia de SongsOfPlaylist
+      tags:
+      - SongsOfPlaylist
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto SongsOfPlaylist
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar SongsOfPlaylist
+        in: body
+        name: RequestSongsOfPlaylist
+        required: true
+        schema:
+          $ref: '#/definitions/songs_play_list.RequestSongsOfPlaylist'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+      summary: Actualiza una instancia de SongsOfPlaylist
+      tags:
+      - SongsOfPlaylist
+  /api/v1/songs-play-list/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto SongsOfPlaylist
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+      summary: Obtiene todas las instancias de SongsOfPlaylist
+      tags:
+      - SongsOfPlaylist
+  /api/v1/songs-play-list/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto SongsOfPlaylist
+        en la base de datos
+      parameters:
+      - description: SongsOfPlaylist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+      summary: Elimina una instancia de SongsOfPlaylist
+      tags:
+      - SongsOfPlaylist
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto SongsOfPlaylist
+        en la base de datos por su id
+      parameters:
+      - description: SongsOfPlaylist ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_play_list.ResponseSongsOfPlaylist'
+      summary: Obtiene una instancia de SongsOfPlaylist por su id
+      tags:
+      - SongsOfPlaylist
+  /api/v1/songs/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Songs
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+      summary: Obtiene todas las instancias de Songs
+      tags:
+      - Songs
+  /api/v1/songs/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Songs en la
+        base de datos
+      parameters:
+      - description: Songs ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+      summary: Elimina una instancia de Songs
+      tags:
+      - Songs
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Songs en la
+        base de datos por su id
+      parameters:
+      - description: Songs ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs.ResponseSongs'
+      summary: Obtiene una instancia de Songs por su id
+      tags:
+      - Songs
+  /api/v1/songsplayed:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto SongsPlayed
+        en la base de datos
+      parameters:
+      - description: SongsPlayed ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+      summary: Elimina una instancia de SongsPlayed
+      tags:
+      - SongsPlayed
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto SongsPlayed en
+        la base de datos
+      parameters:
+      - description: Datos para crear SongsPlayed
+        in: body
+        name: RequestSongsPlayed
+        required: true
+        schema:
+          $ref: '#/definitions/songs_played.RequestSongsPlayed'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+      summary: Crear una instancia de SongsPlayed
+      tags:
+      - SongsPlayed
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto SongsPlayed
+        en la base de datos
+      parameters:
+      - description: Datos para actualizar SongsPlayed
+        in: body
+        name: RequestSongsPlayed
+        required: true
+        schema:
+          $ref: '#/definitions/songs_played.RequestSongsPlayed'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+      summary: Actualiza una instancia de SongsPlayed
+      tags:
+      - SongsPlayed
+  /api/v1/songsplayed/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto SongsPlayed
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+      summary: Obtiene todas las instancias de SongsPlayed
+      tags:
+      - SongsPlayed
+  /api/v1/songsplayed/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto SongsPlayed
+        en la base de datos por su id
+      parameters:
+      - description: SongsPlayed ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/songs_played.ResponseSongsPlayed'
+      summary: Obtiene una instancia de SongsPlayed por su id
+      tags:
+      - SongsPlayed
+  /api/v1/users:
+    post:
+      consumes:
+      - application/json
+      description: Método que permite crear una instancia del objeto Users en la base
+        de datos
+      parameters:
+      - description: Datos para crear Users
+        in: body
+        name: RequestUsers
+        required: true
+        schema:
+          $ref: '#/definitions/users.RequestUsers'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+      summary: Crear una instancia de Users
+      tags:
+      - Users
+    put:
+      consumes:
+      - application/json
+      description: Método que permite Actualiza una instancia del objeto Users en
+        la base de datos
+      parameters:
+      - description: Datos para actualizar Users
+        in: body
+        name: RequestUsers
+        required: true
+        schema:
+          $ref: '#/definitions/users.RequestUsers'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+      summary: Actualiza una instancia de Users
+      tags:
+      - Users
+  /api/v1/users/:
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener todas las instancias del objeto Users
+        en la base de datos
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+      summary: Obtiene todas las instancias de Users
+      tags:
+      - Users
+  /api/v1/users/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Método que permite eliminar una instancia del objeto Users en la
+        base de datos
+      parameters:
+      - description: Users ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+      summary: Elimina una instancia de Users
+      tags:
+      - Users
+    get:
+      consumes:
+      - application/json
+      description: Método que permite obtener una instancia del objeto Users en la
+        base de datos por su id
+      parameters:
+      - description: Users ID
+        in: path
+        name: id
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "202":
+          description: Accepted
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/users.ResponseUsers'
+      summary: Obtiene una instancia de Users por su id
+      tags:
+      - Users
+swagger: "2.0"
